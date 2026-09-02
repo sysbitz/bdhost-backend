@@ -4,7 +4,7 @@ import "express-async-errors";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import authRoutes from "./routes/auth.js";
+import authRoutes from "./routes/authroute.js";
 import appsRoutes from "./routes/apps.js";
 import filesRoutes from "./routes/files.js";
 import accountRoutes from "./routes/account.js";
