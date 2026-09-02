@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: bdapps-hosting-backend
+    runtime: node
+    plan: starter
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 4000
+      - key: JWT_SECRET
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: CPANEL_BASE_DOMAIN
+        value: lokhalapps.com
+      - key: CPANEL_HOSTNAME
+        sync: false
+      - key: CPANEL_USERNAME
+        sync: false
+      - key: CPANEL_API_TOKEN
+        sync: false
+      - key: DEFAULT_APP_LIMIT
+        value: 2
+      - key: DEFAULT_STORAGE_LIMIT_MB
+        value: 100
