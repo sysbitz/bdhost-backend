@@ -4,8 +4,8 @@ services:
     runtime: node
     plan: starter
     region: singapore
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    buildCommand: rm -f bun.lock && npm install && npm run build
+    startCommand: node dist/index.js
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
