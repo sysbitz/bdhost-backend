@@ -56,7 +56,17 @@ router.post("/", async (req: AuthedRequest, res) => {
   }
 
   const slug = `${slugifyAppName(parsed.data.name)}-${user.id}`;
-  const { url } = await createAppHosting(slug);
+
+  let url: string;
+  try {
+    ({ url } = await createAppHosting(slug));
+  } catch (err) {
+    console.error("[apps] createAppHosting failed:", err);
+    return res.status(502).json({
+      error:
+        "Could not provision hosting on cPanel. Check that CPANEL_HOSTNAME, CPANEL_USERNAME, and CPANEL_API_TOKEN are set correctly on the backend.",
+    });
+  }
 
   const [app] = await db
     .insert(apps)
